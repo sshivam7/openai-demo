@@ -1,5 +1,6 @@
 import './InputForm.css';
 import React, { useEffect, useState } from 'react';
+
 import { db } from '../config/db';
 import useFetch from '../hooks/useFetch';
 import ResultStatus from '../constants/RequestStatus';
@@ -14,7 +15,7 @@ function InputForm() {
   const [dpUpdate, setDbUpdate] = useState(false);
   const { state, fetchData } = useFetch(requestData);
 
-  // Handler logic to deal with state changes
+  // Handlers to deal with user input
   const handleSubmit = () => {
     setRequestData(getCompletionRequestData(prompt, aiEngine));
   };
@@ -34,6 +35,12 @@ function InputForm() {
     setAiEngine(e.target.value);
   };
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit();
+    }
+  };
+
   // IndexedDB database logic
   const addResultData = async (data) => {
     try {
@@ -44,7 +51,7 @@ function InputForm() {
     }
   };
 
-  if (state.status == ResultStatus.SUCCESS && dpUpdate == true) {
+  if (state.status === ResultStatus.SUCCESS && dpUpdate === true) {
     console.log(state.data.choices);
     addResultData({
       request_prompt: requestData.body.prompt,
@@ -57,7 +64,7 @@ function InputForm() {
   return (
     <>
       <form className="input-form">
-        <label htmlFor="text-prompt">Enter Text Prompt:</label>
+        <label htmlFor="text-prompt-input">Enter Text Prompt:</label>
         <textarea
           name="text-prompt"
           onChange={handlePromptChange}
@@ -66,7 +73,7 @@ function InputForm() {
         />
 
         <div className="engine-select">
-          <label htmlFor="ai-engines">Select AI Engine:</label>
+          <label htmlFor="ai-engines-select">Select AI Engine:</label>
           <select name="ai-engines" id="ai-engines-select" onChange={updateAiEngine}>
             {AI_ENGINES.map((engine) => (
               <option key={engine} value={engine}>
@@ -76,8 +83,11 @@ function InputForm() {
           </select>
         </div>
 
-        <input type="button" value="Submit" onClick={handleSubmit} />
-        {state.status == ResultStatus.LOADING ? <div className="loader"></div> : <></>}
+        <input type="button" value="Submit" onClick={handleSubmit} onKeyDown={handleKeypress} />
+        {state.status === ResultStatus.ERROR && (
+          <div className="error">ERROR OCCURRED - Could not fetch data from OpenAI API</div>
+        )}
+        {state.status === ResultStatus.LOADING && <div className="loader"></div>}
       </form>
     </>
   );

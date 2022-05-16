@@ -1,3 +1,4 @@
+// ENUM for status of API requests
 class ResultStatus {
   static LOADING = new ResultStatus('loading');
   static ERROR = new ResultStatus('error');

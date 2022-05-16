@@ -8,11 +8,9 @@ const initialState = {
 };
 
 function useFetch(requestData) {
-  console.log(requestData.url);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchData = () => {
-    console.log(requestData.body);
     dispatch({ type: ResultStatus.LOADING });
     fetch(requestData.url, {
       method: requestData.method,

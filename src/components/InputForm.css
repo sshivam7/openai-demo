@@ -1,3 +1,4 @@
+/* Mobile & Base Styles */
 .input-form {
   display: flex;
   flex-direction: column;
@@ -57,6 +58,11 @@ input[type='button']:hover {
 	cursor: pointer;
 }
 
+.error {
+  color: rgb(201, 0, 0);
+}
+
+/* CSS for loading */
 .loader {
   align-self: center;
   border: 0.8rem solid var(--dark-grey);
@@ -76,6 +82,7 @@ input[type='button']:hover {
   }
 }
 
+/* Wide Screen styles */
 @media (min-width: 800px) {
   .input-form {
     width: 50%;

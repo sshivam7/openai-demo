@@ -7,7 +7,7 @@ export function getCompletionRequestData(prompt, engine) {
     body: {
       prompt: prompt,
       temperature: 0.5,
-      max_tokens: 64,
+      max_tokens: 300,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
