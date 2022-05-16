@@ -1,0 +1,96 @@
+.input-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-form label {
+  font: semi-bold 1.2rem Roboto, serif;
+  margin-bottom: 0.2rem;
+}
+
+#text-prompt-input {
+  background-color: var(--dark-grey);
+  border: 2px solid var(--dark-grey);
+  color: white;
+  font: 0.9rem Roboto, serif;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  min-height: 8rem;
+}
+
+.engine-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.2rem;
+}
+
+.engine-select label {
+  margin-top: 0.2rem;
+}
+
+.engine-select select {
+  width: 100%;
+  height: fit-content;
+  padding: 0.3rem;
+  color: white;
+  background-color: var(--dark-grey);
+  border: 2px solid var(--dark-grey);
+  border-radius: 6px;
+}
+
+input[type='button'] {
+  align-self: flex-end;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+  background-color: var(--lime-green);
+  border: 0px;
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 30%;
+  font: 0.9rem Roboto;
+}
+
+input[type='button']:hover {
+  border: 3px solid var(--dark-grey);
+  background-color: white;
+	cursor: pointer;
+}
+
+.loader {
+  align-self: center;
+  border: 0.8rem solid var(--dark-grey);
+  border-top: 0.8rem solid var(--lime-green);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 800px) {
+  .input-form {
+    width: 50%;
+    margin: 2rem;
+  }
+
+  input[type='button'] {
+    margin-top: 1.2rem;
+  }
+
+	#text-prompt-input {
+		height: 14rem;
+	}
+
+	.engine-select select {
+		height: 2.4rem;
+	}
+}

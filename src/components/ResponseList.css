@@ -1,0 +1,18 @@
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	margin-top: 1rem;
+	background-color: var(--dark-grey);
+	border-radius: 6px;
+}
+
+@media (min-width: 800px) {
+	ul {
+		width: 50%;
+    margin: 2rem;
+	}
+}
